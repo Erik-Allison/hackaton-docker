@@ -1,16 +1,17 @@
 from django.contrib import admin
 
-from hospitalApp.models import (Especializades, Medicos, Pacientes, Horarios,
+from hospitalApp.models import (Especialidades, Medicos, Pacientes, Horarios,
                                 Citas)
 
-@admin.register(Especializades)
-class EspecializadesAdmin(admin.ModelAdmin):
-    list_display=(
+
+@admin.register(Especialidades)
+class EspecialidadesAdmin(admin.ModelAdmin):
+    list_display = (
         'id',
         'Nombre',
         'FechaRegistro',
     )
-    
+
 
 @admin.register(Medicos)
 class Medicos(admin.ModelAdmin):
@@ -21,7 +22,8 @@ class Medicos(admin.ModelAdmin):
         'Dni',
         'EspecialidadId'
     )
-    
+
+
 @admin.register(Pacientes)
 class PacientesAdmin(admin.ModelAdmin):
     list_display = (
@@ -30,7 +32,8 @@ class PacientesAdmin(admin.ModelAdmin):
         'Telefono',
         'Activo',
     )
-    
+
+
 @admin.register(Horarios)
 class HorariosAdmin(admin.ModelAdmin):
     list_display = (
@@ -40,7 +43,8 @@ class HorariosAdmin(admin.ModelAdmin):
         'FechaRegistro',
         'FechaModificacion',
     )
-    
+
+
 @admin.register(Citas)
 class CitasAdmin(admin.ModelAdmin):
     list_display = (

@@ -1,7 +1,9 @@
 from django.db import models
 
 # Create your models here.
-class Especializades(models.Model):
+
+
+class Especialidades(models.Model):
     Nombre = models.CharField(max_length=50)
     Descripcion = models.CharField(max_length=150)
     FechaRegistro = models.DateField(auto_now_add=True)
@@ -9,12 +11,14 @@ class Especializades(models.Model):
     UsuarioRegistro = models.CharField(max_length=30)
     UsuarioModificacion = models.CharField(max_length=30)
     Activo = models.BooleanField(default=True)
-    
+
+
 class Medicos(models.Model):
     Nombres = models.CharField(max_length=50)
     Apellidos = models.CharField(max_length=50)
     Dni = models.CharField(max_length=30)
-    EspecialidadId = models.ForeignKey(Especializades, on_delete=models.CASCADE) 
+    EspecialidadId = models.ForeignKey(
+        Especialidades, on_delete=models.CASCADE)
     Direccion = models.CharField(max_length=150)
     correo = models.CharField(max_length=50)
     telefono = models.CharField(max_length=20)
@@ -25,6 +29,7 @@ class Medicos(models.Model):
     FechaModificacion = models.DateField(auto_now_add=True)
     UsuarioRegistro = models.CharField(max_length=30)
     Activo = models.BooleanField(default=True)
+
 
 class Pacientes(models.Model):
     Nombres = models.CharField(max_length=50)
@@ -39,7 +44,8 @@ class Pacientes(models.Model):
     UsuarioRegistro = models.CharField(max_length=50)
     UsuarioModificacion = models.CharField(max_length=50)
     Activo = models.BooleanField(default=True)
-    
+
+
 class Horarios(models.Model):
     MedicoId = models.ManyToManyField(Medicos)
     FechaAtencion = models.DateField(auto_now_add=False)
@@ -50,7 +56,8 @@ class Horarios(models.Model):
     UsuarioRegistro = models.CharField(max_length=50)
     FechaModificacion = models.DateField(auto_now_add=True)
     UsuarioModificacion = models.CharField(max_length=50)
-    
+
+
 class Citas(models.Model):
     MedicoId = models.ForeignKey(Medicos, on_delete=models.CASCADE)
     PacienteId = models.ForeignKey(Pacientes, on_delete=models.CASCADE)
