@@ -5,7 +5,7 @@ from django.db import models
 
 class Especialidades(models.Model):
     Nombre = models.CharField(max_length=50)
-    Descripcion = models.CharField(max_length=150)
+    Descripcion = models.TextField()
     FechaRegistro = models.DateField(auto_now_add=True)
     FechaModificacion = models.DateField(auto_now_add=True)
     UsuarioRegistro = models.CharField(max_length=30)
