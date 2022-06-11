@@ -60,8 +60,36 @@ class EspecialidadesDeleteView(DeleteView):
 class MedicosViewSet(viewsets.ModelViewSet):
     queryset = Medicos.objects.all()
     serializer_class = MedicosSerializer
+    
+
+class MedicosCreateView(CreateView):
+    model = Medicos
+    template_name = "medicos/create-medicos.html"
+    form_class = MedicosForm
+    success_url = reverse_lazy('hospital_app:success')
+    
+
+class MedicosListView(ListView):
+    model = Medicos
+    context_object_name = 'list'
+    template_name = "medicos/list-medicos.html"
+    ordering = 'id'
 
 
+class MedicosUpdateView(UpdateView):
+    model = Medicos
+    template_name = "medicos/medicos_update.html"
+    fields = '__all__'
+    success_url = reverse_lazy('hospital_app:success')
+
+
+class MedicosDeleteView(DeleteView):
+    model = Medicos
+    template_name = "medicos/delete-medicos.html"
+    success_url = reverse_lazy('hospital_app:success')
+
+
+# --------------------------------------------------------------------------------------
 class PacientesViewSet(viewsets.ModelViewSet):
     queryset = Pacientes.objects.all()
     serializer_class = PacientesSerializer

@@ -11,6 +11,9 @@ class Especialidades(models.Model):
     UsuarioRegistro = models.CharField(max_length=30)
     UsuarioModificacion = models.CharField(max_length=30)
     Activo = models.BooleanField(default=True)
+    
+    def __str__(self) -> str:
+        return self.Nombre
 
 
 class Medicos(models.Model):
@@ -29,6 +32,9 @@ class Medicos(models.Model):
     FechaModificacion = models.DateField(auto_now_add=True)
     UsuarioRegistro = models.CharField(max_length=30)
     Activo = models.BooleanField(default=True)
+    
+    def __str__(self) -> str:
+        return self.Nombres
 
 
 class Pacientes(models.Model):
