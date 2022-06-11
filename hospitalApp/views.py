@@ -31,6 +31,28 @@ class EspecialidadesCreateView(CreateView):
     template_name = "especialidades/create-especialidades.html"
     form_class = EspecialidadesForm
     success_url = reverse_lazy('hospital_app:success')
+    
+
+class EspecialidadesListView(ListView):
+    model = Especialidades
+    context_object_name = 'list'
+    template_name = "especialidades/list-especialidades.html"
+    ordering = 'id'
+    
+
+class EspecialidadesUpdateView(UpdateView):
+    model = Especialidades
+    template_name = "especialidades/especialidades_update.html"
+    fields = '__all__'
+    success_url = reverse_lazy('hospital_app:success')
+
+
+class EspecialidadesDeleteView(DeleteView):
+    model = Especialidades
+    template_name = "especialidades/delete-especialidades.html"
+    success_url = reverse_lazy('hospital_app:success')
+
+
 
 # -------------------- Crud Medicos -----------------------------------------------
 
