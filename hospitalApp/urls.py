@@ -1,6 +1,8 @@
 from django.urls import path
+from .views import InicioTemplateView
 
 from .views import MedicosDeleteView, MedicosListView, MedicosUpdateView, Success
+
 from .views import (EspecialidadesCreateView,
                     EspecialidadesListView, EspecialidadesUpdateView, EspecialidadesDeleteView)
 
@@ -9,6 +11,9 @@ from .views import (MedicosCreateView)
 app_name = 'hospital_app'
 
 urlpatterns = [
+    # ------------- urls paginainicio ------------------------------------
+    path('inicio/', InicioTemplateView.as_view(),
+         name='inicio'),
     # --------- urls Especialidades ---------------------------------------
     path('create-especialidades/', EspecialidadesCreateView.as_view(),
          name='creatEspecialidad'),

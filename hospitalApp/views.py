@@ -17,6 +17,10 @@ from rest_framework import viewsets
 # mensaje de proc satisfactorio para todos los procesos
 class Success(TemplateView):
     template_name = "success.html"
+    
+
+class InicioTemplateView(TemplateView):
+    template_name = "inicio.html"
 
 # ------------------ Crud Especialidades -----------------------------------------------------
 
