@@ -1,6 +1,6 @@
 from django.urls import reverse_lazy
 
-from django.views.generic import (CreateView, TemplateView, ListView, DeleteView,
+from django.views.generic import (CreateView, DetailView, TemplateView, ListView, DeleteView,
                                   UpdateView)
 
 from .models import (Especialidades, Medicos, Pacientes, Horarios, Citas)
@@ -36,12 +36,29 @@ class EspecialidadesCreateView(CreateView):
     form_class = EspecialidadesForm
     success_url = reverse_lazy('hospital_app:success')
     
-
-class EspecialidadesListView(ListView):
+    
+class EspecialidadesDetailView(DetailView):
     model = Especialidades
+    template_name = "especialidades/detail-especialidades.html"
+    form_class = EspecialidadesForm
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+    
+class EspecialidadesListView(ListView):
+    '''cunado sobreescribimos el metodo query set
+    ya no necesitamos llamar al modelo'''
+    #model = Especialidades
     context_object_name = 'list'
+    paginate_by = 4
     template_name = "especialidades/list-especialidades.html"
-    ordering = 'id'
+    ordering = 'Nombre'
+    
+    def get_queryset(self):
+        palabra_clave = self.request.GET.get("kword", '')
+        lista = Especialidades.objects.filter(Nombre__icontains=palabra_clave)
+        return lista
     
 
 class EspecialidadesUpdateView(UpdateView):

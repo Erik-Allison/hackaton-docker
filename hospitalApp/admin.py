@@ -3,13 +3,15 @@ from django.contrib import admin
 from hospitalApp.models import (Especialidades, Medicos, Pacientes, Horarios,
                                 Citas)
 
+esp = Especialidades
 
 @admin.register(Especialidades)
 class EspecialidadesAdmin(admin.ModelAdmin):
     list_display = (
-        'id',
         'Nombre',
-        'FechaRegistro',
+        'Descripcion',
+        'UsuarioRegistro',
+        'FechaModificacion',
     )
 
 

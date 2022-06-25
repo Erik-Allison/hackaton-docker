@@ -15,7 +15,6 @@ class Especialidades(models.Model):
     def __str__(self) -> str:
         return self.Nombre
 
-
 class Medicos(models.Model):
     Nombres = models.CharField(max_length=50)
     Apellidos = models.CharField(max_length=50)
@@ -33,10 +32,6 @@ class Medicos(models.Model):
     UsuarioRegistro = models.CharField(max_length=30)
     Activo = models.BooleanField(default=True)
     
-    def __str__(self) -> str:
-        return self.Nombres
-
-
 class Pacientes(models.Model):
     Nombres = models.CharField(max_length=50)
     Apellidos = models.CharField(max_length=50)
@@ -51,7 +46,6 @@ class Pacientes(models.Model):
     UsuarioModificacion = models.CharField(max_length=50)
     Activo = models.BooleanField(default=True)
 
-
 class Horarios(models.Model):
     MedicoId = models.ManyToManyField(Medicos)
     FechaAtencion = models.DateField(auto_now_add=False)
@@ -62,7 +56,6 @@ class Horarios(models.Model):
     UsuarioRegistro = models.CharField(max_length=50)
     FechaModificacion = models.DateField(auto_now_add=True)
     UsuarioModificacion = models.CharField(max_length=50)
-
 
 class Citas(models.Model):
     MedicoId = models.ForeignKey(Medicos, on_delete=models.CASCADE)

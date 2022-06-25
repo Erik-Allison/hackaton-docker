@@ -1,4 +1,80 @@
-<h1>Listado de clientes</h1>
-{% for espec in list %}
-<p>{{espec.Nombre}} - {{espec.Descripcion}} - {{espec.Activo}}</p>
-{% endfor %}
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% include 'includes/header.html' %}
+<div class="container">
+    <div class="col">
+        <div class="row">
+            <h1>lista de especialidades</h1>
+        </div>
+        <form class="row" method="get">{% csrf_token %}
+            <div class="input-group mb-3">
+                <input type="text" id="kword" name="kword" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username"
+                    aria-describedby="button-addon2">
+                <button type="submit" class="btn btn-info">Buscar</button>
+            </div>
+        </form>
+
+        <div class="row">
+            <table class="table caption-top">
+                <thead>
+                    <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Descripcion</th>
+                        <th scope="col">UsuarioRegistro</th>
+                        <th scope="col">FechaModificacion</th>
+                        <th scope="col">Accion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <h1>Listado de especialidades</h1>
+                    {% for espec in list %}
+                    <tr>
+                        <td>{{espec.Nombre}}</td>
+                        <td>{{espec.Descripcion}}</td>
+                        <td>{{espec.UsuarioRegistro}}</td>
+                        <td>{{espec.FechaModificacion}}</td>
+                        <td><a class="btn btn-warning" href="{% url 'hospital_app:detailsEspecialidad' espec.id %}" role="button">Ver</a></td>
+                    </tr>
+                    {% endfor %}
+                    
+                </tbody>
+            </table>    
+        </div>
+        
+        {% if list %}
+            <div class="row">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        
+                        {% if  page_obj.has_previous %}
+                            <li class="page-item"><a class="page-link" href="?page={{page_obj.previous_page_number}}">Atras</a></li>
+                        {% endif %}
+                            
+                        
+                        {% for pagina in paginator.page_range %}
+                            
+                            {% ifequal pagina page_obj.number %}
+                                <li class="page-item active" aria-current="page">
+                                    <a class="page-link">{{ pagina }}</a>
+                                </li>
+                            {% else %}
+                                <li class="page-item"><a class="page-link" href="?page={{pagina}}">{{ pagina }}</a></li>
+                            {% endifequal %}
+                                
+                        {% endfor %}
+                             
+                        {% if page_obj.has_next %}
+                            <li class="page-item"><a class="page-link" href="?page={{page_obj.next_page_number}}">Siguiente</a></li>
+                        {% endif %}
+                        
+                    </ul>
+                </nav>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock content %}
+

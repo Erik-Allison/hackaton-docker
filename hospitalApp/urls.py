@@ -3,7 +3,7 @@ from .views import InicioTemplateView
 
 from .views import MedicosDeleteView, MedicosListView, MedicosUpdateView, Success
 
-from .views import (EspecialidadesCreateView,
+from .views import (EspecialidadesCreateView, EspecialidadesDetailView,
                     EspecialidadesListView, EspecialidadesUpdateView, EspecialidadesDeleteView)
 
 from .views import (MedicosCreateView)
@@ -17,6 +17,8 @@ urlpatterns = [
     # --------- urls Especialidades ---------------------------------------
     path('create-especialidades/', EspecialidadesCreateView.as_view(),
          name='creatEspecialidad'),
+    path('EspecialidadesDetailView/<pk>', EspecialidadesDetailView.as_view(),
+         name='detailsEspecialidad'),
     path('success/', Success.as_view(), name='success'),
     path('list-especialidades/', EspecialidadesListView.as_view(),
          name='listEspecialidad'),
