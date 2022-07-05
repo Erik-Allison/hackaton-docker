@@ -32,6 +32,9 @@ class Medicos(models.Model):
     UsuarioRegistro = models.CharField(max_length=30)
     Activo = models.BooleanField(default=True)
     
+    def __str__(self) -> str:
+        return self.Nombres
+    
 class Pacientes(models.Model):
     Nombres = models.CharField(max_length=50)
     Apellidos = models.CharField(max_length=50)

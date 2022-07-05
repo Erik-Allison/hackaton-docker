@@ -90,11 +90,21 @@ class MedicosCreateView(CreateView):
     success_url = reverse_lazy('hospital_app:success')
     
 
+class MedicosDetailView(DetailView):
+    model = Medicos
+    template_name = "medicos/detail-medicos.html"
+    form_class = MedicosForm
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
 class MedicosListView(ListView):
     model = Medicos
+    paginate_by: 4
     context_object_name = 'list'
     template_name = "medicos/list-medicos.html"
-    ordering = 'id'
+    ordering = 'Nombres'
 
 
 class MedicosUpdateView(UpdateView):

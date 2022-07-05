@@ -37,8 +37,7 @@
                         <td>{{espec.FechaModificacion}}</td>
                         <td><a class="btn btn-warning" href="{% url 'hospital_app:detailsEspecialidad' espec.id %}" role="button">Ver</a></td>
                     </tr>
-                    {% endfor %}
-                    
+                    {% endfor %}  
                 </tbody>
             </table>    
         </div>
@@ -48,11 +47,10 @@
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">
                         
-                        {% if  page_obj.has_previous %}
+                        {% if page_obj.has_previous %}
                             <li class="page-item"><a class="page-link" href="?page={{page_obj.previous_page_number}}">Atras</a></li>
                         {% endif %}
                             
-                        
                         {% for pagina in paginator.page_range %}
                             
                             {% ifequal pagina page_obj.number %}
