@@ -1,3 +1,5 @@
+from django.http import HttpResponseRedirect
+from django.shortcuts import render
 from django.urls import reverse_lazy
 
 from django.views.generic import (CreateView, DetailView, TemplateView, ListView, DeleteView,
@@ -126,6 +128,23 @@ class PacientesViewSet(viewsets.ModelViewSet):
     serializer_class = PacientesSerializer
 
 
+class PacientesCreateView(CreateView):
+    model = Pacientes
+    template_name = "pacientes/create-paciente.html"
+    form_class = PacientesForm
+        
+    def upload_file(request):
+        if request.method == 'POST':
+            form = PacientesForm(request.POST, request.FILES)
+            if form.is_valid():
+                form.save()
+                return HttpResponseRedirect('/hospital_app:success/')
+        else:
+            form = PacientesForm()
+            return render(request, 'create-paciente.html', {'form':form})
+
+
+# --------------------------------------------------------------------------------------
 class HorariosViewSet(viewsets.ModelViewSet):
     queryset = Horarios.objects.all()
     serializer_class = HorariosSerializer

@@ -1,3 +1,4 @@
+from urllib import request
 from django.db import models
 
 # Create your models here.
@@ -45,10 +46,9 @@ class Pacientes(models.Model):
     FechaNacimiento = models.DateField(auto_now_add=False)
     FechaResgistro = models.DateField(auto_now_add=True)
     FechaModificacion = models.DateField(auto_now_add=True)
-    UsuarioRegistro = models.CharField(max_length=50)
-    UsuarioModificacion = models.CharField(max_length=50)
+    document = models.FileField('Documento', upload_to='pacientesFiles/')
     Activo = models.BooleanField(default=True)
-
+    
 class Horarios(models.Model):
     MedicoId = models.ManyToManyField(Medicos)
     FechaAtencion = models.DateField(auto_now_add=False)

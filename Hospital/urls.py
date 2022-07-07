@@ -28,4 +28,5 @@ urlpatterns = [
          name='token_obtain_pair'),
     path('hospitalApp/token/refresh/',
          TokenRefreshView.as_view(), name='token_refresh'),
-]
+
+] 

@@ -1,0 +1,16 @@
+{% extends 'home/base.html' %}
+{% block title %}
+CreatePacien
+{% endblock title %}
+
+{% block body %}
+<div class="text-center">
+    <h3 class="text-info">Crear Paciente</h3>
+</div>
+<div class="text-center" class="col-md-4">
+    <form method="post">{% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-primary" type="submit">Crear</button>
+    </form>
+</div>
+{% endblock body %}
