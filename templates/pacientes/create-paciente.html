@@ -8,7 +8,7 @@ CreatePacien
     <h3 class="text-info">Crear Paciente</h3>
 </div>
 <div class="text-center" class="col-md-4">
-    <form method="post">{% csrf_token %}
+    <form method="post" enctype="multipart/form-data">{% csrf_token %}
         {{ form.as_p }}
         <button class="btn btn-primary" type="submit">Crear</button>
     </form>
